@@ -18,9 +18,7 @@ class CreateUsersTable extends Migration
 
             $table->string('username')->unique();
 
-            $table->string('first_name');
-            $table->string('middle_name')->nullable();
-            $table->string('last_name');
+            $table->string('name')->required();
 
             $table->integer('gender')->default(0);
             $table->string('avatar')->default('www.google.com');
