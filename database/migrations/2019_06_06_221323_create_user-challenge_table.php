@@ -13,7 +13,7 @@ class CreateUserChallengeTable extends Migration
      */
     public function up()
     {
-        Schema::create('user-challenge', function (Blueprint $table) {
+        Schema::create('user_challenge', function (Blueprint $table) {
             $table->bigIncrements('id');
 
             $table->integer('user_id');
@@ -27,6 +27,8 @@ class CreateUserChallengeTable extends Migration
             $table->boolean('is_joker_accepted')->default(0);
 
             $table->timestamps();
+
+            
         });
     }
 
@@ -37,6 +39,6 @@ class CreateUserChallengeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user-challenge');
+        Schema::dropIfExists('user_challenge');
     }
 }

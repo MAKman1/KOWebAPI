@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('login', 'PassportController@login');
+Route::post('register', 'PassportController@register');
+ 
+Route::middleware('auth:api')->group(function () {
+    Route::get('user', 'PassportController@details');
+ 
+    Route::resource('products', 'ProductController');
+});
