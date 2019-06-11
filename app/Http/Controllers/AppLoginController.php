@@ -45,7 +45,7 @@ class AppLoginController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request)
+    public function loginUserName(Request $request)
     {
         $credentials = [
             'username' => $request->username,
@@ -59,14 +59,25 @@ class AppLoginController extends Controller
             return response()->json(['error' => 'UnAuthorised'], 401);
         }
     }
- 
+
     /**
-     * Returns Authenticated User Details
+     * Handles Login Request
      *
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function details()
+    public function loginContactNumber(Request $request)
     {
-        return response()->json(['user' => auth()->user()], 200);
+        $credentials = [
+            'contact_no' => $request->contact_no,
+            'password' => $request->password
+        ];
+ 
+        if (auth()->attempt($credentials)) {
+            $token = auth()->user()->createToken('KOTheChallenge')->accessToken;
+            return response()->json(['token' => $token], 200);
+        } else {
+            return response()->json(['error' => 'UnAuthorised'], 401);
+        }
     }
 }

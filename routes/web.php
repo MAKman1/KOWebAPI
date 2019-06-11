@@ -19,7 +19,13 @@ Route::post('login', 'PassportController@login');
 Route::post('register', 'PassportController@register');
  
 Route::middleware('auth:api')->group(function () {
-    Route::get('user', 'PassportController@details');
+    Route::post('api/login-username', 'AppLoginController@loginUserName');
+    Route::post('api/login-contact', 'AppLoginController@loginContactNumber');
+
+    Route::post('api/register-user', 'AppLoginController@register');
+
+    Route::post('api/get-challenges', 'MainController@showChallenges');
+    Route::post('api/get-friends', 'MainController@showFriends');
+
  
-    Route::resource('products', 'ProductController');
 });
